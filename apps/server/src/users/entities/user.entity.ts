@@ -27,10 +27,4 @@ export class User {
 
   @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
   updatedAt: Date;
-
-  @Column({ nullable: true })
-  avatar?: string;
-
-  @Column({ nullable: true })
-  bio?: string;
 }
