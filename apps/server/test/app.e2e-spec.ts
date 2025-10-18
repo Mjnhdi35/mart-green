@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
@@ -14,6 +13,8 @@ describe('AppController (e2e)', () => {
       process.env.DATABASE_URL ||
       'postgresql://postgres:postgres@localhost:5432/martgreen_test';
     process.env.NODE_ENV = 'test';
+    process.env.UPSTASH_REDIS_REST_URL = 'https://mock-redis-url.com';
+    process.env.UPSTASH_REDIS_REST_TOKEN = 'mock-token';
 
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
