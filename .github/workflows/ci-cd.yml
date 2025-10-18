@@ -58,10 +58,11 @@ jobs:
 
       - name: Run database migrations
         working-directory: apps/server
-        run: npm run migration:run
+        run: timeout 300 npm run migration:run
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           NODE_ENV: production
+        continue-on-error: false
 
       - name: Build application
         working-directory: apps/server
