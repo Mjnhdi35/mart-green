@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
@@ -25,8 +26,8 @@ describe('AppController (e2e)', () => {
       .get('/health')
       .expect(200)
       .expect((res) => {
-        expect((res.body as any).status).toBe('ok');
-        expect((res.body as any).info.database.status).toBe('up');
+        expect(res.body.status).toBe('ok');
+        expect(res.body.info.database.status).toBe('up');
       });
   });
 
@@ -35,8 +36,8 @@ describe('AppController (e2e)', () => {
       .get('/health/db')
       .expect(200)
       .expect((res) => {
-        expect((res.body as any).status).toBe('ok');
-        expect((res.body as any).info.database.status).toBe('up');
+        expect(res.body.status).toBe('ok');
+        expect(res.body.info.database.status).toBe('up');
       });
   });
 });
