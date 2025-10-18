@@ -16,13 +16,17 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
+  afterEach(async () => {
+    await app.close();
+  });
+
   it('/health (GET)', () => {
     return request(app.getHttpServer())
       .get('/health')
       .expect(200)
       .expect((res) => {
-        expect(res.body.status).toBe('ok');
-        expect(res.body.info.database.status).toBe('up');
+        expect((res.body as any).status).toBe('ok');
+        expect((res.body as any).info.database.status).toBe('up');
       });
   });
 
@@ -31,8 +35,8 @@ describe('AppController (e2e)', () => {
       .get('/health/db')
       .expect(200)
       .expect((res) => {
-        expect(res.body.status).toBe('ok');
-        expect(res.body.info.database.status).toBe('up');
+        expect((res.body as any).status).toBe('ok');
+        expect((res.body as any).info.database.status).toBe('up');
       });
   });
 });
