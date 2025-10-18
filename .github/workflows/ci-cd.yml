@@ -56,6 +56,13 @@ jobs:
         working-directory: apps/server
         run: npm ci
 
+      - name: Run database migrations
+        working-directory: apps/server
+        run: npm run migration:run
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NODE_ENV: production
+
       - name: Build application
         working-directory: apps/server
         run: npm run build
