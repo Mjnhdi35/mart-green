@@ -5,6 +5,7 @@ on:
     branches: [main, develop]
   pull_request:
     branches: [main, develop]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -45,6 +46,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        working-directory: apps/server
+        run: npm ci
+
+      - name: Build application
+        working-directory: apps/server
+        run: npm run build
 
       - name: Deploy to Render
         uses: johnbeynon/render-deploy-action@v0.0.8

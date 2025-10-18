@@ -7,12 +7,12 @@ services:
       dockerfile: Dockerfile.prod
     container_name: martgreen-server-prod
     restart: unless-stopped
-    ports:
-      - "3000:3000"
     environment:
       - NODE_ENV=production
       - DATABASE_URL=${DATABASE_URL}
-      - REDIS_URL=${REDIS_URL}
+      - UPSTASH_REDIS_REST_URL=${UPSTASH_REDIS_REST_URL}
+      - UPSTASH_REDIS_REST_TOKEN=${UPSTASH_REDIS_REST_TOKEN}
+      - PORT=${PORT:-3000}
     networks:
       - martgreen-network
 
