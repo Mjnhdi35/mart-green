@@ -10,7 +10,7 @@
    - Tạo Pull Request → Chạy tests
 
 2. **Production**:
-   - Merge vào `main` → Tests + Auto Deploy
+   - Merge vào `main` → Tests + Auto Deploy via GitHub Actions
    - Manual trigger → Có thể deploy bất cứ lúc nào
 
 ### 📋 Cần setup trên GitHub
@@ -33,7 +33,7 @@ Vào **Settings** > **Branches** > Add rule cho `main`:
 - ✅ Require branches to be up to date before merging
 - ✅ Include administrators
 
-### 🔧 Render Configuration
+### 🔧 Render Configuration (Tạo qua UI)
 
 #### Service Settings:
 
@@ -42,7 +42,7 @@ Vào **Settings** > **Branches** > Add rule cho `main`:
 - **Node Version**: 20.x
 - **Root Directory**: `apps/server`
 
-#### Environment Variables:
+#### Environment Variables (Set trên Render Dashboard):
 
 ```
 NODE_ENV = production
@@ -82,7 +82,7 @@ git merge develop
 git push origin main
 ```
 
-→ GitHub Actions chạy tests + deploy lên Render
+→ GitHub Actions chạy tests + deploy lên Render (qua GitHub Actions)
 
 #### Manual Deploy:
 
@@ -127,7 +127,7 @@ git push origin main
 ### 🎉 Benefits
 
 - ✅ **Tự động testing** trên mọi push
-- ✅ **Tự động deploy** khi merge main
+- ✅ **Tự động deploy** khi merge main (qua GitHub Actions)
 - ✅ **Branch protection** đảm bảo code quality
 - ✅ **Manual trigger** khi cần deploy ngay
 - ✅ **Full monitoring** qua GitHub và Render
