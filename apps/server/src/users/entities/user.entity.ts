@@ -1,14 +1,9 @@
 import { Exclude } from 'class-transformer';
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { BaseModelEntity } from '../../core/entities/base.entity';
 
 @Entity('users')
-export class User {
+export class User extends BaseModelEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -21,10 +16,4 @@ export class User {
   @Column()
   @Exclude()
   password: string;
-
-  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
-  createdAt: Date;
-
-  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
-  updatedAt: Date;
 }
