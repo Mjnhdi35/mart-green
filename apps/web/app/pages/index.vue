@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h1>page index</h1>
-  </div>
+  <div>index page</div>
 </template>
 
 <script setup lang="ts"></script>

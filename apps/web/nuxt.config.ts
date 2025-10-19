@@ -2,14 +2,14 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+  ssr: true,
 
   typescript: {
     typeCheck: true,
     strict: true,
   },
-  eslint: {
-    checker: true,
-  },
 
-  modules: ["@nuxt/eslint"],
+  runtimeConfig: {
+    apiUrl: process.env.API_BASE_URL! || "",
+  },
 });
