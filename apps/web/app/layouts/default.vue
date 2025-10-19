@@ -1,5 +1,7 @@
 <template>
-  <div>index page</div>
+  <UContainer>
+    <slot />
+  </UContainer>
 </template>
 
 <script setup lang="ts"></script>
