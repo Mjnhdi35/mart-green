@@ -12,4 +12,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiUrl: process.env.API_BASE_URL! || "",
   },
+
+  modules: ["@nuxt/ui", "@nuxt/eslint"],
+  css: ["~/assets/css/index.css"],
 });
