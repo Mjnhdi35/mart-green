@@ -1,4 +1,4 @@
-name: Web CI/CD Pipeline
+name: Web Production CI/CD Pipeline
 
 on:
   push:
