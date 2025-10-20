@@ -13,13 +13,13 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    HealthModule,
     DatabaseModule,
     RedisModule,
+    HealthModule,
     UsersModule,
     AuthModule,
   ],
-  controllers: [],
+
   providers: [
     {
       provide: APP_GUARD,

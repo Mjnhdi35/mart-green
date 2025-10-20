@@ -18,6 +18,8 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const reflector = app.get(Reflector);
   const port = configService.getOrThrow<number>('PORT');
+  const isProduction =
+    configService.getOrThrow<string>('NODE_ENV') === 'production';
   app.setGlobalPrefix('api');
   app.useGlobalPipes(
     new ValidationPipe({
@@ -26,7 +28,22 @@ async function bootstrap() {
     }),
   );
   app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
-  app.enableCors();
+  app.enableCors(
+    isProduction
+      ? {
+          origin: [
+            configService.getOrThrow<string>('CORS_FE'),
+            configService.getOrThrow<string>('CORS_FE_URL'),
+          ],
+          methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+          allowedHeaders: ['Content-Type', 'Authorization'],
+          credentials: true,
+          maxAge: 3600,
+        }
+      : {
+          origin: '*',
+        },
+  );
   await app.listen(port);
   console.log(`Application is running on: ${port}`);
 }
