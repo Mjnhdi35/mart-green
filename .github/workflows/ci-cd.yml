@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: apps/server
-        run: npm ci
+        run: npm install
 
       - name: Run linting
         working-directory: apps/server
@@ -60,7 +60,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: apps/server
-        run: npm ci
+        run: npm install
 
       - name: Run database migrations
         working-directory: apps/server
