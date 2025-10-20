@@ -57,6 +57,10 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
+### Auth module tests
+
+Xem tài liệu chi tiết: `docs/auth-tests.md`.
+
 ## Deployment
 
 When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.

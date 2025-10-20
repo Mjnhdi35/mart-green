@@ -1,0 +1,54 @@
+name: Web CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - "apps/web/**"
+      - ".github/workflows/web-ci-cd.yml"
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - "apps/web/**"
+      - ".github/workflows/web-ci-cd.yml"
+  workflow_dispatch:
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: apps/web
+        run: npm install
+
+      - name: Lint
+        working-directory: apps/web
+        run: npm run lint --if-present
+
+      - name: Build
+        working-directory: apps/web
+        run: npm run build
+
+  deploy:
+    needs: web
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Deploy to Render (Web)
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_WEB_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
