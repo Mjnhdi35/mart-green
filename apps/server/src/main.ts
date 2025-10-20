@@ -31,17 +31,14 @@ async function bootstrap() {
   app.enableCors(
     isProduction
       ? {
-          origin: [
-            configService.getOrThrow<string>('CORS_FE'),
-            configService.getOrThrow<string>('CORS_FE_URL'),
-          ],
+          origin: [configService.getOrThrow<string>('CORS_FE_URL')],
           methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
           allowedHeaders: ['Content-Type', 'Authorization'],
           credentials: true,
           maxAge: 3600,
         }
       : {
-          origin: '*',
+          origin: [configService.getOrThrow<string>('CORS_FE')],
         },
   );
   await app.listen(port);
