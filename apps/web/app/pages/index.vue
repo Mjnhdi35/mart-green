@@ -1,7 +1,5 @@
 <template>
-  <div>index page</div>
+      <div>index pages</div>
 </template>
 
 <script setup lang="ts"></script>
-
-<style scoped></style>
